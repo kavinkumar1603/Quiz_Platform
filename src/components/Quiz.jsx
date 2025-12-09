@@ -46,6 +46,11 @@ const Quiz = ({ onRestart }) => {
       question: "What does the push() method do?",
       options: ["Adds element at end", "Adds element at start", "Removes last element", "Sorts array"],
       correct: 0,
+    },
+    {
+      question: "Which keyword is used to create a function in JavaScript?",
+      options: ["function", "func", "def", "method"],
+      correct: 0,
     }
   ];
 

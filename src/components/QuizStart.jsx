@@ -17,7 +17,7 @@ const QuizStart = ({ onStart }) => {
         {/* Quiz Information Cards */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="bg-blue-50 p-4 rounded-lg text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-1">9</div>
+            <div className="text-3xl font-bold text-blue-600 mb-1">10</div>
             <div className="text-sm text-slate-600">Questions</div>
           </div>
           <div className="bg-emerald-50 p-4 rounded-lg text-center">
