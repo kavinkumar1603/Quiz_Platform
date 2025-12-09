@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Quiz = ({ onRestart }) => {
+const Quiz = ({ onRestart, userName }) => {
   const questions = [
     {
       question: "Which keyword declares a constant in JavaScript?",
@@ -262,7 +262,9 @@ const Quiz = ({ onRestart }) => {
               </div>
             </div>
 
-            <h2 className="text-slate-800 text-3xl font-bold mb-2">Quiz Completed!</h2>
+            <h2 className="text-slate-800 text-3xl font-bold mb-2">
+              {userName ? `Great Job, ${userName}!` : "Quiz Completed!"}
+            </h2>
             <p className="text-slate-600 text-base mb-8">
               {score === questions.length
                 ? "Perfect score! Outstanding performance!"
@@ -275,7 +277,9 @@ const Quiz = ({ onRestart }) => {
 
             {/* Score Card */}
             <div className="bg-slate-50 p-8 rounded-lg mb-8">
-              <p className="text-slate-600 text-sm font-medium mb-3">Final Score</p>
+              <p className="text-slate-600 text-sm font-medium mb-3">
+                {userName ? `${userName}'s Final Score` : "Final Score"}
+              </p>
               <div className="flex items-center justify-center gap-2 mb-1">
                 <p className="text-blue-600 text-5xl font-bold">{score}</p>
                 <p className="text-slate-400 text-3xl font-medium">/ {questions.length}</p>

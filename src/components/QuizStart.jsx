@@ -1,4 +1,20 @@
+import { useState } from "react";
+
 const QuizStart = ({ onStart }) => {
+  const [showNameModal, setShowNameModal] = useState(false);
+  const [name, setName] = useState("");
+
+  const handleStartClick = () => {
+    setShowNameModal(true);
+  };
+
+  const handleNameSubmit = (e) => {
+    e.preventDefault();
+    if (name.trim()) {
+      onStart(name.trim());
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 flex justify-center items-center p-4">
       <div className="w-full max-w-2xl bg-white p-12 rounded-xl shadow-2xl">
@@ -72,7 +88,7 @@ const QuizStart = ({ onStart }) => {
 
         {/* Start Button */}
         <button
-          onClick={onStart}
+          onClick={handleStartClick}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
           Start Quiz
@@ -80,6 +96,51 @@ const QuizStart = ({ onStart }) => {
 
         <p className="text-center text-slate-500 text-sm mt-6">Ready to test your skills? Good luck! 🚀</p>
       </div>
+
+      {/* Name Input Modal */}
+      {showNameModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-slate-800 mb-2">Enter Your Name</h3>
+              <p className="text-slate-600">Let's personalize your quiz experience!</p>
+            </div>
+            
+            <form onSubmit={handleNameSubmit}>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+                className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg focus:border-blue-500 focus:outline-none text-slate-800 font-medium mb-4"
+                autoFocus
+                required
+              />
+              
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowNameModal(false)}
+                  className="flex-1 px-4 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-medium transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all"
+                >
+                  Start Quiz
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

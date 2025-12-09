@@ -4,13 +4,16 @@ import Quiz from "./components/Quiz";
 
 const App = () => {
   const [quizStarted, setQuizStarted] = useState(false);
+  const [userName, setUserName] = useState("");
 
-  const handleStartQuiz = () => {
+  const handleStartQuiz = (name) => {
+    setUserName(name);
     setQuizStarted(true);
   };
 
   const handleRestartQuiz = () => {
     setQuizStarted(false);
+    setUserName("");
   };
 
   return (
@@ -18,7 +21,7 @@ const App = () => {
       {!quizStarted ? (
         <QuizStart onStart={handleStartQuiz} />
       ) : (
-        <Quiz onRestart={handleRestartQuiz} />
+        <Quiz onRestart={handleRestartQuiz} userName={userName} />
       )}
     </>
   );
